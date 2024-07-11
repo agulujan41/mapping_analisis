@@ -1,0 +1,696 @@
+{
+    "results": {
+        "ACURA": {
+            "absolute_no_match": 0,
+            "model_no_match": 6,
+            "cars_model": 148,
+            "matched": true
+        },
+        "AUDI": {
+            "absolute_no_match": 41,
+            "model_no_match": 93,
+            "cars_model": 2234,
+            "matched": true
+        },
+        "ALFA ROMEO": {
+            "absolute_no_match": 13,
+            "model_no_match": 25,
+            "cars_model": 133,
+            "matched": true
+        },
+        "ASTON MARTIN": {
+            "absolute_no_match": 87,
+            "model_no_match": 87,
+            "cars_model": 87,
+            "matched": false
+        },
+        "BAIC": {
+            "absolute_no_match": 20,
+            "model_no_match": 58,
+            "cars_model": 189,
+            "matched": true
+        },
+        "BYD": {
+            "absolute_no_match": 10,
+            "model_no_match": 36,
+            "cars_model": 44,
+            "matched": true
+        },
+        "BUICK": {
+            "absolute_no_match": 0,
+            "model_no_match": 2,
+            "cars_model": 99,
+            "matched": true
+        },
+        "BESTUNE": {
+            "absolute_no_match": 33,
+            "model_no_match": 33,
+            "cars_model": 33,
+            "matched": false
+        },
+        "BMW": {
+            "absolute_no_match": 86,
+            "model_no_match": 550,
+            "cars_model": 3008,
+            "matched": true
+        },
+        "BENTLEY": {
+            "absolute_no_match": 104,
+            "model_no_match": 104,
+            "cars_model": 104,
+            "matched": false
+        },
+        "CADILLAC": {
+            "absolute_no_match": 11,
+            "model_no_match": 32,
+            "cars_model": 420,
+            "matched": true
+        },
+        "CHANGAN": {
+            "absolute_no_match": 29,
+            "model_no_match": 43,
+            "cars_model": 78,
+            "matched": true
+        },
+        "CBO": {
+            "absolute_no_match": 38,
+            "model_no_match": 38,
+            "cars_model": 38,
+            "matched": false
+        },
+        "CHRYSLER": {
+            "absolute_no_match": 74,
+            "model_no_match": 347,
+            "cars_model": 1907,
+            "matched": true
+        },
+        "CHEVROLET": {
+            "absolute_no_match": 0,
+            "model_no_match": 734,
+            "cars_model": 3485,
+            "matched": true
+        },
+        "CUPRA": {
+            "absolute_no_match": 6,
+            "model_no_match": 6,
+            "cars_model": 50,
+            "matched": true
+        },
+        "CHIREY": {
+            "absolute_no_match": 6,
+            "model_no_match": 10,
+            "cars_model": 59,
+            "matched": true
+        },
+        "DODGE": {
+            "absolute_no_match": 31,
+            "model_no_match": 102,
+            "cars_model": 1256,
+            "matched": true
+        },
+        "FORD": {
+            "absolute_no_match": 133,
+            "model_no_match": 718,
+            "cars_model": 4065,
+            "matched": true
+        },
+        "FERRARI": {
+            "absolute_no_match": 149,
+            "model_no_match": 149,
+            "cars_model": 149,
+            "matched": false
+        },
+        "FOTON": {
+            "absolute_no_match": 93,
+            "model_no_match": 93,
+            "cars_model": 93,
+            "matched": false
+        },
+        "FIAT": {
+            "absolute_no_match": 3,
+            "model_no_match": 87,
+            "cars_model": 775,
+            "matched": true
+        },
+        "FAW": {
+            "absolute_no_match": 60,
+            "model_no_match": 60,
+            "cars_model": 60,
+            "matched": false
+        },
+        "GENERAL MOTORS": {
+            "absolute_no_match": 211,
+            "model_no_match": 684,
+            "cars_model": 998,
+            "matched": true
+        },
+        "GIANT MOTORS": {
+            "absolute_no_match": 68,
+            "model_no_match": 68,
+            "cars_model": 68,
+            "matched": false
+        },
+        "GREAT WALL MOTORS": {
+            "absolute_no_match": 39,
+            "model_no_match": 52,
+            "cars_model": 55,
+            "matched": true
+        },
+        "HONDA": {
+            "absolute_no_match": 15,
+            "model_no_match": 299,
+            "cars_model": 1171,
+            "matched": true
+        },
+        "HYUNDAI": {
+            "absolute_no_match": 8,
+            "model_no_match": 433,
+            "cars_model": 888,
+            "matched": true
+        },
+        "HUMMER": {
+            "absolute_no_match": 8,
+            "model_no_match": 12,
+            "cars_model": 46,
+            "matched": true
+        },
+        "INFINITI": {
+            "absolute_no_match": 4,
+            "model_no_match": 34,
+            "cars_model": 232,
+            "matched": true
+        },
+        "JAC": {
+            "absolute_no_match": 8,
+            "model_no_match": 155,
+            "cars_model": 357,
+            "matched": true
+        },
+        "JEEP": {
+            "absolute_no_match": 30,
+            "model_no_match": 50,
+            "cars_model": 1070,
+            "matched": true
+        },
+        "JAGUAR": {
+            "absolute_no_match": 38,
+            "model_no_match": 118,
+            "cars_model": 409,
+            "matched": true
+        },
+        "JETOUR": {
+            "absolute_no_match": 7,
+            "model_no_match": 7,
+            "cars_model": 7,
+            "matched": false
+        },
+        "KIA": {
+            "absolute_no_match": 3,
+            "model_no_match": 69,
+            "cars_model": 759,
+            "matched": true
+        },
+        "LAMBORGHINI": {
+            "absolute_no_match": 90,
+            "model_no_match": 90,
+            "cars_model": 90,
+            "matched": false
+        },
+        "LINCOLN": {
+            "absolute_no_match": 21,
+            "model_no_match": 33,
+            "cars_model": 350,
+            "matched": true
+        },
+        "LANDROVER": {
+            "absolute_no_match": 53,
+            "model_no_match": 241,
+            "cars_model": 749,
+            "matched": true
+        },
+        "LOTUS": {
+            "absolute_no_match": 33,
+            "model_no_match": 33,
+            "cars_model": 33,
+            "matched": false
+        },
+        "LEXUS": {
+            "absolute_no_match": 27,
+            "model_no_match": 47,
+            "cars_model": 99,
+            "matched": true
+        },
+        "MAZDA": {
+            "absolute_no_match": 7,
+            "model_no_match": 30,
+            "cars_model": 1100,
+            "matched": true
+        },
+        "MASTRETTA": {
+            "absolute_no_match": 2,
+            "model_no_match": 2,
+            "cars_model": 2,
+            "matched": false
+        },
+        "MG": {
+            "absolute_no_match": 13,
+            "model_no_match": 23,
+            "cars_model": 142,
+            "matched": true
+        },
+        "MAYBACH": {
+            "absolute_no_match": 7,
+            "model_no_match": 7,
+            "cars_model": 7,
+            "matched": false
+        },
+        "MITSUBISHI": {
+            "absolute_no_match": 0,
+            "model_no_match": 78,
+            "cars_model": 746,
+            "matched": true
+        },
+        "MCLAREN": {
+            "absolute_no_match": 42,
+            "model_no_match": 42,
+            "cars_model": 42,
+            "matched": false
+        },
+        "MINI": {
+            "absolute_no_match": 0,
+            "model_no_match": 0,
+            "cars_model": 1085,
+            "matched": true
+        },
+        "MASERATI": {
+            "absolute_no_match": 175,
+            "model_no_match": 175,
+            "cars_model": 175,
+            "matched": false
+        },
+        "MERCURY": {
+            "absolute_no_match": 3,
+            "model_no_match": 11,
+            "cars_model": 47,
+            "matched": true
+        },
+        "MERCEDES BENZ": {
+            "absolute_no_match": 45,
+            "model_no_match": 1821,
+            "cars_model": 3094,
+            "matched": true
+        },
+        "NISSAN": {
+            "absolute_no_match": 101,
+            "model_no_match": 1120,
+            "cars_model": 4126,
+            "matched": true
+        },
+        "PEUGEOT": {
+            "absolute_no_match": 20,
+            "model_no_match": 237,
+            "cars_model": 1218,
+            "matched": true
+        },
+        "PORSCHE": {
+            "absolute_no_match": 18,
+            "model_no_match": 133,
+            "cars_model": 1328,
+            "matched": true
+        },
+        "PONTIAC": {
+            "absolute_no_match": 13,
+            "model_no_match": 13,
+            "cars_model": 151,
+            "matched": true
+        },
+        "PIAGGIO": {
+            "absolute_no_match": 24,
+            "model_no_match": 24,
+            "cars_model": 24,
+            "matched": false
+        },
+        "TATA MOTORS": {
+            "absolute_no_match": 9,
+            "model_no_match": 9,
+            "cars_model": 9,
+            "matched": false
+        },
+        "JMC": {
+            "absolute_no_match": 9,
+            "model_no_match": 9,
+            "cars_model": 21,
+            "matched": true
+        },
+        "RENAULT": {
+            "absolute_no_match": 18,
+            "model_no_match": 104,
+            "cars_model": 1255,
+            "matched": true
+        },
+        "VOLKSWAGEN": {
+            "absolute_no_match": 98,
+            "model_no_match": 277,
+            "cars_model": 4416,
+            "matched": true
+        },
+        "UAZ": {
+            "absolute_no_match": 50,
+            "model_no_match": 50,
+            "cars_model": 50,
+            "matched": false
+        },
+        "TOYOTA": {
+            "absolute_no_match": 4,
+            "model_no_match": 74,
+            "cars_model": 2203,
+            "matched": true
+        },
+        "ROLLS ROYCE": {
+            "absolute_no_match": 21,
+            "model_no_match": 21,
+            "cars_model": 21,
+            "matched": false
+        },
+        "SAAB": {
+            "absolute_no_match": 9,
+            "model_no_match": 66,
+            "cars_model": 66,
+            "matched": true
+        },
+        "SSANGYONG": {
+            "absolute_no_match": 5,
+            "model_no_match": 5,
+            "cars_model": 5,
+            "matched": false
+        },
+        "SUZUKI": {
+            "absolute_no_match": 2,
+            "model_no_match": 80,
+            "cars_model": 881,
+            "matched": true
+        },
+        "SKYWELL": {
+            "absolute_no_match": 18,
+            "model_no_match": 18,
+            "cars_model": 18,
+            "matched": false
+        },
+        "SMART": {
+            "absolute_no_match": 2,
+            "model_no_match": 9,
+            "cars_model": 181,
+            "matched": true
+        },
+        "SEAT": {
+            "absolute_no_match": 34,
+            "model_no_match": 70,
+            "cars_model": 1512,
+            "matched": true
+        },
+        "SUBARU": {
+            "absolute_no_match": 0,
+            "model_no_match": 74,
+            "cars_model": 429,
+            "matched": true
+        },
+        "SEV": {
+            "absolute_no_match": 0,
+            "model_no_match": 29,
+            "cars_model": 29,
+            "matched": true
+        },
+        "TESLA MOTORS": {
+            "absolute_no_match": 3,
+            "model_no_match": 12,
+            "cars_model": 136,
+            "matched": true
+        },
+        "VUHL": {
+            "absolute_no_match": 9,
+            "model_no_match": 9,
+            "cars_model": 9,
+            "matched": false
+        },
+        "VOLVO": {
+            "absolute_no_match": 21,
+            "model_no_match": 39,
+            "cars_model": 588,
+            "matched": true
+        },
+        "ZACUA": {
+            "absolute_no_match": 4,
+            "model_no_match": 4,
+            "cars_model": 4,
+            "matched": false
+        },
+        "HAVAL": {
+            "absolute_no_match": 5,
+            "model_no_match": 5,
+            "cars_model": 11,
+            "matched": true
+        },
+        "OMODA": {
+            "absolute_no_match": 0,
+            "model_no_match": 4,
+            "cars_model": 18,
+            "matched": true
+        },
+        "ORA": {
+            "absolute_no_match": 3,
+            "model_no_match": 3,
+            "cars_model": 3,
+            "matched": false
+        },
+        "WEY": {
+            "absolute_no_match": 1,
+            "model_no_match": 1,
+            "cars_model": 1,
+            "matched": false
+        },
+        "GEELY": {
+            "absolute_no_match": 2,
+            "model_no_match": 4,
+            "cars_model": 8,
+            "matched": true
+        },
+        "KING LONG": {
+            "absolute_no_match": 10,
+            "model_no_match": 10,
+            "cars_model": 10,
+            "matched": false
+        },
+        "GAC": {
+            "absolute_no_match": 0,
+            "model_no_match": 11,
+            "cars_model": 11,
+            "matched": true
+        },
+        "MAXUS": {
+            "absolute_no_match": 1,
+            "model_no_match": 1,
+            "cars_model": 1,
+            "matched": false
+        },
+        "WULING": {
+            "absolute_no_match": 1,
+            "model_no_match": 1,
+            "cars_model": 1,
+            "matched": false
+        },
+        "DONGFENG": {
+            "absolute_no_match": 2,
+            "model_no_match": 2,
+            "cars_model": 2,
+            "matched": false
+        },
+        "EXEED": {
+            "absolute_no_match": 9,
+            "model_no_match": 9,
+            "cars_model": 9,
+            "matched": false
+        },
+        "JINPENG": {
+            "absolute_no_match": 5,
+            "model_no_match": 5,
+            "cars_model": 5,
+            "matched": false
+        },
+        "JG": {
+            "absolute_no_match": 2,
+            "model_no_match": 2,
+            "cars_model": 2,
+            "matched": false
+        },
+        "YUDO": {
+            "absolute_no_match": 1,
+            "model_no_match": 1,
+            "cars_model": 1,
+            "matched": false
+        },
+        "JAECOO": {
+            "absolute_no_match": 3,
+            "model_no_match": 3,
+            "cars_model": 3,
+            "matched": false
+        },
+        "BPS": {
+            "absolute_no_match": 2,
+            "model_no_match": 2,
+            "cars_model": 2,
+            "matched": false
+        },
+        "SERES": {
+            "absolute_no_match": 2,
+            "model_no_match": 2,
+            "cars_model": 2,
+            "matched": false
+        }
+    },
+    "no_matched_brand": [
+        {
+            "brand": "ASTON MARTIN",
+            "car_mount": 87
+        },
+        {
+            "brand": "BESTUNE",
+            "car_mount": 33
+        },
+        {
+            "brand": "BENTLEY",
+            "car_mount": 104
+        },
+        {
+            "brand": "CBO",
+            "car_mount": 38
+        },
+        {
+            "brand": "FERRARI",
+            "car_mount": 149
+        },
+        {
+            "brand": "FOTON",
+            "car_mount": 93
+        },
+        {
+            "brand": "FAW",
+            "car_mount": 60
+        },
+        {
+            "brand": "GIANT MOTORS",
+            "car_mount": 68
+        },
+        {
+            "brand": "JETOUR",
+            "car_mount": 7
+        },
+        {
+            "brand": "LAMBORGHINI",
+            "car_mount": 90
+        },
+        {
+            "brand": "LOTUS",
+            "car_mount": 33
+        },
+        {
+            "brand": "MASTRETTA",
+            "car_mount": 2
+        },
+        {
+            "brand": "MAYBACH",
+            "car_mount": 7
+        },
+        {
+            "brand": "MCLAREN",
+            "car_mount": 42
+        },
+        {
+            "brand": "MASERATI",
+            "car_mount": 175
+        },
+        {
+            "brand": "PIAGGIO",
+            "car_mount": 24
+        },
+        {
+            "brand": "TATA MOTORS",
+            "car_mount": 9
+        },
+        {
+            "brand": "UAZ",
+            "car_mount": 50
+        },
+        {
+            "brand": "ROLLS ROYCE",
+            "car_mount": 21
+        },
+        {
+            "brand": "SSANGYONG",
+            "car_mount": 5
+        },
+        {
+            "brand": "SKYWELL",
+            "car_mount": 18
+        },
+        {
+            "brand": "VUHL",
+            "car_mount": 9
+        },
+        {
+            "brand": "ZACUA",
+            "car_mount": 4
+        },
+        {
+            "brand": "ORA",
+            "car_mount": 3
+        },
+        {
+            "brand": "WEY",
+            "car_mount": 1
+        },
+        {
+            "brand": "KING LONG",
+            "car_mount": 10
+        },
+        {
+            "brand": "MAXUS",
+            "car_mount": 1
+        },
+        {
+            "brand": "WULING",
+            "car_mount": 1
+        },
+        {
+            "brand": "DONGFENG",
+            "car_mount": 2
+        },
+        {
+            "brand": "EXEED",
+            "car_mount": 9
+        },
+        {
+            "brand": "JINPENG",
+            "car_mount": 5
+        },
+        {
+            "brand": "JG",
+            "car_mount": 2
+        },
+        {
+            "brand": "YUDO",
+            "car_mount": 1
+        },
+        {
+            "brand": "JAECOO",
+            "car_mount": 3
+        },
+        {
+            "brand": "BPS",
+            "car_mount": 2
+        },
+        {
+            "brand": "SERES",
+            "car_mount": 2
+        }
+    ]
+}
