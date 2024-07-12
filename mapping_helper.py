@@ -1,5 +1,6 @@
 import csv
 import const
+import json
 from mappings_utils import create_enum
 
 
@@ -9,6 +10,7 @@ class MappingDetails():
         self.cars_mount = None
         self.cars_no_match_mount = None
         self.rating_match_mount = None
+        self.base_catalog = None
         self.company_base_catalog_cars = None
         self.company_cars = None
         self.company_matched_catalog_cars = None
@@ -35,6 +37,36 @@ class MappingDetails():
 
         return csv_header_list, csv_content
 
+    def _read_json(self, file_name):
+        with open(file_name, 'r') as file:
+            data = json.load(file)
+        return data
+
+    def _get_base_catalog(self, csv_header_list, csv_content):
+        Headers = create_enum('Headers', csv_header_list)
+        base_catalog = {}
+
+        for row in csv_content:
+            brand = row[Headers.base_brand.value]
+            if brand not in base_catalog:
+                new_brand = {
+                    'matched': True,
+                    'model_catalog': {}
+                }
+                base_catalog[brand] = new_brand
+            model = row[Headers.base_model.value]
+            if model not in base_catalog[brand]['model_catalog']:
+                new_model = {
+                    'matched': False,
+                    'version_list': [],
+                }
+                base_catalog[brand]['model_catalog'][model] = new_model
+            version = row[Headers.base_version.value]
+            base_catalog[brand][
+                'model_catalog'][
+                    model]['version_list'].append(version)
+        return base_catalog
+
     def _get_base_details(self, csv_header_list, csv_content):
         results_no_match = {}
         Headers = create_enum('Headers', csv_header_list)
@@ -43,6 +75,8 @@ class MappingDetails():
         rating_match_mount = 0
         company_base_catalog_cars = []
         for row in csv_content:
+            brand_is_matched = True
+            model_is_matched = True
             if not row[Headers.base_brand.value] in results_no_match:
                 results_no_match[row[Headers.base_brand.value]] = {
                     'absolute_no_match': 0,
@@ -53,11 +87,23 @@ class MappingDetails():
                 results_no_match[
                     row[
                         Headers.base_brand.value]]['absolute_no_match'] += 1
+                brand_is_matched = False
 
             if row[Headers.company_model.value] == const.NO_MATCH:
                 results_no_match[
                     row[
                         Headers.base_brand.value]]['model_no_match'] += 1
+                model_is_matched = False
+
+            base_brand = row[Headers.base_brand.value]
+            base_model = row[Headers.base_model.value]
+            current_car = self.base_catalog[
+                base_brand]['model_catalog'][base_model]
+            if brand_is_matched and not model_is_matched and \
+                    not current_car['matched']:
+                current_car['matched'] = False
+            if brand_is_matched and model_is_matched:
+                current_car['matched'] = True
 
             if int(row[Headers.match_rating.value]) > 0:
                 rating_match_mount += 1
@@ -80,6 +126,9 @@ class MappingDetails():
     def _base_general_results(self):
         csv_header_list, csv_content = self._read_csv(
             self.mapping_file_name
+        )
+        self.base_catalog = self._get_base_catalog(
+            csv_header_list, csv_content
         )
         self._get_base_details(
             csv_header_list, csv_content
@@ -156,6 +205,12 @@ class MappingDetails():
         general['company'] = self.general_company_results()
         return general
 
+    def _get_model_list(self, brand):
+        model_list = []
+        for model in self.base_catalog[brand]['model_catalog'].keys():
+            model_list.append(model)
+        return model_list
+
     def _get_no_matched_brands(self):
         results = {}
         results['results'] = self.results_no_match
@@ -166,13 +221,58 @@ class MappingDetails():
             if info['absolute_no_match'] == \
                     info['cars_model'] == info['model_no_match']:
                 info['matched'] = False
+                model_list = self._get_model_list(brand)
+                self.base_catalog[brand]['matched'] = False
                 no_matched_brands.append({
                     'brand': brand,
-                    'car_mount': info['cars_model']
+                    'car_mount': info['cars_model'],
+                    'model_list': model_list
                 })
             else:
                 info['matched'] = True
         return results
+
+    def _get_top_no_matches_brand(self, file_name):
+        data = self._read_json(file_name)
+        no_matched_brands = [
+            item["brand"] for item in data["no_matched_brand"]]
+
+        results = data["results"]
+        filtered_results = {
+            k: v[
+                "model_no_match"
+                ]for k, v in results.items() if k not in no_matched_brands}
+        sorted_results = sorted(
+            filtered_results.items(), key=lambda x: x[1], reverse=True)
+
+        top_10_keys = [k for k, v in sorted_results]
+        return top_10_keys, data
+
+    def _get_ranking_no_matched(self, file_name):
+        top_ranking_list, data = self._get_top_no_matches_brand(file_name)
+
+        results = {}
+        ranking = {}
+        results['no_matched_model_ranking'] = ranking
+        results['ranking_brand_list'] = top_ranking_list
+        for brand in top_ranking_list:
+            ranking[brand] = data['results'][brand]
+
+        return results
+
+    def _get_no_matched_model_list(self):
+        no_model_matched = {}
+        for brand_name, brand_value in self.base_catalog.items():
+            if brand_value['matched']:
+                brand_info = {}
+                no_model_matched[brand_name] = brand_info
+                model_list = []
+                brand_info['model_list'] = model_list
+                for model, model_value in brand_value['model_catalog'].items():
+                    if not model_value['matched']:
+                        model_list.append(model)
+
+        return no_model_matched
 
     def general_base_results(self):
         return self.general_base
@@ -185,3 +285,15 @@ class MappingDetails():
 
     def no_matched_results(self):
         return self.no_matched_brands_results
+
+    def get_ranking_brand_no_model_matched(self, file_name):
+        return self._get_top_no_matches_brand(file_name)[0]
+
+    def get_ranking_no_matched_results(self, file_name):
+        return self._get_ranking_no_matched(file_name)
+
+    def get_base_catalog(self):
+        return self.base_catalog
+
+    def get_no_matched_model_list(self):
+        return self._get_no_matched_model_list()
