@@ -297,3 +297,8 @@ class MappingDetails():
 
     def get_no_matched_model_list(self):
         return self._get_no_matched_model_list()
+
+    def get_mapping_intelligence_data(self, file_brand, file_model):
+        return self._get_mapping_intelligence_data(
+            file_brand, file_model
+        )

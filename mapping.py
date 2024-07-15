@@ -1,5 +1,6 @@
 import json
 from mapping_helper import MappingDetails
+from mapping_intelligence import run_intelligence
 
 
 def csv_details_writer(file_name, data):
@@ -49,4 +50,9 @@ no_model_matched_path = 'results/development/mapping_no_matched_model.json'
 no_model_matched_data = mapping_object.get_no_matched_model_list()
 csv_details_writer(
     no_model_matched_path, no_model_matched_data
+)
+
+python_output_file = "results/development/mapping_intelligence_output.py"
+run_intelligence(
+    no_matched_brand_path, no_model_matched_path, python_output_file
 )
