@@ -7,23 +7,23 @@ from mappings_utils import create_enum
 class MappingDetails():
     def __init__(self, mapping_file_name, company_file_name):
         self.result_no_match = None
-        self.cars_mount = None
-        self.cars_no_match_mount = None
+        self.car_list_mount = None
+        self.car_list_no_match_mount = None
         self.rating_match_mount = None
         self.base_catalog = None
-        self.company_base_catalog_cars = None
-        self.company_cars = None
-        self.company_matched_catalog_cars = None
-        self.company_no_matched_catalog_cars = None
-        self.company_cars = None
+        self.company_base_catalog_car_list = None
+        self.company_car_list = None
+        self.company_matched_catalog_car_list = None
+        self.company_no_matched_catalog_car_list = None
+        self.company_car_list = None
 
         self.mapping_file_name = mapping_file_name
         self.company_file_name = company_file_name
 
-        self.general_base = self._base_general_results()
-        self.general_company = self._company_general_results()
-        self.general = self._general_results()
-        self.no_matched_brands_results = self._get_no_matched_brands()
+        self.general_base = self._base_general_result()
+        self.general_company = self._company_general_result()
+        self.general = self._general_result()
+        self.no_matched_brand_list_result = self._get_no_matched_brand_list()
 
     def _read_csv(self, file_name):
         csv_file = None
@@ -43,60 +43,61 @@ class MappingDetails():
         return data
 
     def _get_base_catalog(self, csv_header_list, csv_content):
-        Headers = create_enum('Headers', csv_header_list)
+        HEADER_LIST = create_enum('HEADER_LIST', csv_header_list)
         base_catalog = {}
 
         for row in csv_content:
-            brand = row[Headers.base_brand.value]
+            brand = row[HEADER_LIST.base_brand.value]
             if brand not in base_catalog:
                 new_brand = {
                     'matched': True,
                     'model_catalog': {}
                 }
                 base_catalog[brand] = new_brand
-            model = row[Headers.base_model.value]
+            model = row[HEADER_LIST.base_model.value]
             if model not in base_catalog[brand]['model_catalog']:
                 new_model = {
                     'matched': False,
                     'version_list': [],
                 }
                 base_catalog[brand]['model_catalog'][model] = new_model
-            version = row[Headers.base_version.value]
+            version = row[HEADER_LIST.base_version.value]
             base_catalog[brand][
                 'model_catalog'][
                     model]['version_list'].append(version)
         return base_catalog
 
-    def _get_base_details(self, csv_header_list, csv_content):
-        results_no_match = {}
-        Headers = create_enum('Headers', csv_header_list)
-        cars_mount = 0
-        cars_no_match_mount = 0
+    def _get_base_detail_list(self, csv_header_list, csv_content):
+        result_no_match = {}
+        HEADER_LIST = create_enum('HEADER_LIST', csv_header_list)
+        car_list_mount = 0
+        car_list_no_match_mount = 0
         rating_match_mount = 0
-        company_base_catalog_cars = []
+        company_base_catalog_car_list = []
         for row in csv_content:
             brand_is_matched = True
             model_is_matched = True
-            if not row[Headers.base_brand.value] in results_no_match:
-                results_no_match[row[Headers.base_brand.value]] = {
+            if not row[HEADER_LIST.base_brand.value] in result_no_match:
+                result_no_match[row[HEADER_LIST.base_brand.value]] = {
                     'absolute_no_match': 0,
                     'model_no_match': 0,
-                    'cars_model': 0
+                    'car_list_model': 0
                 }
-            if row[Headers.company_brand.value] == const.NO_MATCH:
-                results_no_match[
+            if row[HEADER_LIST.company_brand.value] == const.NO_MATCH:
+                result_no_match[
                     row[
-                        Headers.base_brand.value]]['absolute_no_match'] += 1
+                        HEADER_LIST.base_brand.value]][
+                            'absolute_no_match'] += 1
                 brand_is_matched = False
 
-            if row[Headers.company_model.value] == const.NO_MATCH:
-                results_no_match[
+            if row[HEADER_LIST.company_model.value] == const.NO_MATCH:
+                result_no_match[
                     row[
-                        Headers.base_brand.value]]['model_no_match'] += 1
+                        HEADER_LIST.base_brand.value]]['model_no_match'] += 1
                 model_is_matched = False
 
-            base_brand = row[Headers.base_brand.value]
-            base_model = row[Headers.base_model.value]
+            base_brand = row[HEADER_LIST.base_brand.value]
+            base_model = row[HEADER_LIST.base_model.value]
             current_car = self.base_catalog[
                 base_brand]['model_catalog'][base_model]
             if brand_is_matched and not model_is_matched and \
@@ -105,45 +106,45 @@ class MappingDetails():
             if brand_is_matched and model_is_matched:
                 current_car['matched'] = True
 
-            if int(row[Headers.match_rating.value]) > 0:
+            if int(row[HEADER_LIST.match_rating.value]) > 0:
                 rating_match_mount += 1
             else:
-                cars_no_match_mount += 1
-            company_car_id = row[Headers.company_car_id.value]
-            company_base_catalog_cars.append(company_car_id)
-            results_no_match[
+                car_list_no_match_mount += 1
+            company_car_id = row[HEADER_LIST.company_car_id.value]
+            company_base_catalog_car_list.append(company_car_id)
+            result_no_match[
                 row[
-                    Headers.base_brand.value]]['cars_model'] += 1
+                    HEADER_LIST.base_brand.value]]['car_list_model'] += 1
 
-            cars_mount += 1
+            car_list_mount += 1
 
-            self.results_no_match = results_no_match
-            self.cars_mount = cars_mount
-            self.cars_no_match_mount = cars_no_match_mount
+            self.result_no_match = result_no_match
+            self.car_list_mount = car_list_mount
+            self.car_list_no_match_mount = car_list_no_match_mount
             self.rating_match_mount = rating_match_mount
-            self.company_base_catalog_cars = company_base_catalog_cars
+            self.company_base_catalog_car_list = company_base_catalog_car_list
 
-    def _base_general_results(self):
+    def _base_general_result(self):
         csv_header_list, csv_content = self._read_csv(
             self.mapping_file_name
         )
         self.base_catalog = self._get_base_catalog(
             csv_header_list, csv_content
         )
-        self._get_base_details(
+        self._get_base_detail_list(
             csv_header_list, csv_content
         )
 
         base = {}
         mounts = {}
         base['mounts'] = mounts
-        mounts['cars_total'] = self.cars_mount
+        mounts['car_list_total'] = self.car_list_mount
         mounts[
-            'cars_model_match_total'
-            ] = self.cars_mount - self.cars_no_match_mount
-        mounts['cars_model_no_match_total'] = self.cars_no_match_mount
+            'car_list_model_match_total'
+            ] = self.car_list_mount - self.car_list_no_match_mount
+        mounts['car_list_model_no_match_total'] = self.car_list_no_match_mount
         matches_model_total_base_percent = round(
-            (100-(self.cars_no_match_mount/self.cars_mount)*100), 1)
+            (100-(self.car_list_no_match_mount/self.car_list_mount)*100), 1)
         mounts[
             'matches_model_total_base_percent'
             ] = f'{matches_model_total_base_percent} %'
@@ -151,58 +152,62 @@ class MappingDetails():
         rating = {}
         base['rating'] = rating
         rating['rating_match_total'] = self.rating_match_mount
-        r_no_match_total = self.cars_mount - self.rating_match_mount
+        r_no_match_total = self.car_list_mount - self.rating_match_mount
         rating['rating_no_match_total'] = r_no_match_total
         rating[
             'rating_math_total_base_percent'
-            ] = f'{round(100-(r_no_match_total/self.cars_mount)*100, 1)} %'
+            ] = f'{round(100-(r_no_match_total/self.car_list_mount)*100, 1)} %'
 
         return base
 
-    def _get_company_details(self, csv_header_list, csv_content):
-        Headers = create_enum('Headers', csv_header_list)
-        company_matched_catalog_cars = []
-        company_no_matched_catalog_cars = []
-        company_cars = []
+    def _get_company_detail_list(self, csv_header_list, csv_content):
+        HEADER_LIST = create_enum('HEADER_LIST', csv_header_list)
+        company_matched_catalog_car_list = []
+        company_no_matched_catalog_car_list = []
+        company_car_list = []
         for row in csv_content:
-            company_car_id = row[Headers.CVE.value]
-            if company_car_id in self.company_base_catalog_cars:
-                company_matched_catalog_cars.append(
+            company_car_id = row[HEADER_LIST.CVE.value]
+            if company_car_id in self.company_base_catalog_car_list:
+                company_matched_catalog_car_list.append(
                     company_car_id
                 )
             else:
-                company_no_matched_catalog_cars.append(
+                company_no_matched_catalog_car_list.append(
                     company_car_id
                 )
-            company_cars.append(company_car_id)
+            company_car_list.append(company_car_id)
 
-        self.company_matched_catalog_cars = company_matched_catalog_cars
-        self.company_no_matched_catalog_cars = company_no_matched_catalog_cars
-        self.company_cars = company_cars
+        self.company_matched_catalog_car_list = (
+            company_matched_catalog_car_list
+        )
+        self.company_no_matched_catalog_car_list = (
+            company_no_matched_catalog_car_list
+        )
+        self.company_car_list = company_car_list
 
-    def _company_general_results(self):
+    def _company_general_result(self):
         csv_header_list, csv_content = self._read_csv(
             self.company_file_name
         )
-        self._get_company_details(
+        self._get_company_detail_list(
             csv_header_list, csv_content
         )
         company = {}
-        company['company_cars_amount'] = len(
-            self.company_cars
+        company['company_car_list_amount'] = len(
+            self.company_car_list
         )
-        company['company_matched_cars_amount'] = len(
-            self.company_matched_catalog_cars
+        company['company_matched_car_list_amount'] = len(
+            self.company_matched_catalog_car_list
         )
-        company['company_no_matched_cars_amount'] = len(
-            self.company_no_matched_catalog_cars
+        company['company_no_matched_car_list_amount'] = len(
+            self.company_no_matched_catalog_car_list
         )
         return company
 
-    def _general_results(self):
+    def _general_result(self):
         general = {}
-        general['base'] = self.general_base_results()
-        general['company'] = self.general_company_results()
+        general['base'] = self.general_base_result()
+        general['company'] = self.general_company_result()
         return general
 
     def _get_model_list(self, brand):
@@ -211,54 +216,54 @@ class MappingDetails():
             model_list.append(model)
         return model_list
 
-    def _get_no_matched_brands(self):
-        results = {}
-        results['results'] = self.results_no_match
+    def _get_no_matched_brand_list(self):
+        result = {}
+        result['result'] = self.result_no_match
 
-        no_matched_brands = []
-        results['no_matched_brand'] = no_matched_brands
-        for brand, info in self.results_no_match.items():
+        no_matched_brand_list = []
+        result['no_matched_brand'] = no_matched_brand_list
+        for brand, info in self.result_no_match.items():
             if info['absolute_no_match'] == \
-                    info['cars_model'] == info['model_no_match']:
+                    info['car_list_model'] == info['model_no_match']:
                 info['matched'] = False
                 model_list = self._get_model_list(brand)
                 self.base_catalog[brand]['matched'] = False
-                no_matched_brands.append({
+                no_matched_brand_list.append({
                     'brand': brand,
-                    'car_mount': info['cars_model'],
+                    'car_mount': info['car_list_model'],
                     'model_list': model_list
                 })
             else:
                 info['matched'] = True
-        return results
+        return result
 
     def _get_top_no_matches_brand(self, file_name):
         data = self._read_json(file_name)
-        no_matched_brands = [
+        no_matched_brand_list = [
             item["brand"] for item in data["no_matched_brand"]]
 
-        results = data["results"]
-        filtered_results = {
+        result = data["result"]
+        filtered_result = {
             k: v[
                 "model_no_match"
-                ]for k, v in results.items() if k not in no_matched_brands}
-        sorted_results = sorted(
-            filtered_results.items(), key=lambda x: x[1], reverse=True)
+                ]for k, v in result.items() if k not in no_matched_brand_list}
+        sorted_result = sorted(
+            filtered_result.items(), key=lambda x: x[1], reverse=True)
 
-        top_10_keys = [k for k, v in sorted_results]
+        top_10_keys = [k for k, v in sorted_result]
         return top_10_keys, data
 
     def _get_ranking_no_matched(self, file_name):
         top_ranking_list, data = self._get_top_no_matches_brand(file_name)
 
-        results = {}
+        result = {}
         ranking = {}
-        results['no_matched_model_ranking'] = ranking
-        results['ranking_brand_list'] = top_ranking_list
+        result['no_matched_model_ranking'] = ranking
+        result['ranking_brand_list'] = top_ranking_list
         for brand in top_ranking_list:
-            ranking[brand] = data['results'][brand]
+            ranking[brand] = data['result'][brand]
 
-        return results
+        return result
 
     def _get_no_matched_model_list(self):
         no_model_matched = {}
@@ -274,22 +279,22 @@ class MappingDetails():
 
         return no_model_matched
 
-    def general_base_results(self):
+    def general_base_result(self):
         return self.general_base
 
-    def general_company_results(self):
+    def general_company_result(self):
         return self.general_company
 
-    def general_results(self):
+    def general_result(self):
         return self.general
 
-    def no_matched_results(self):
-        return self.no_matched_brands_results
+    def no_matched_result(self):
+        return self.no_matched_brand_list_result
 
     def get_ranking_brand_no_model_matched(self, file_name):
         return self._get_top_no_matches_brand(file_name)[0]
 
-    def get_ranking_no_matched_results(self, file_name):
+    def get_ranking_no_matched_result(self, file_name):
         return self._get_ranking_no_matched(file_name)
 
     def get_base_catalog(self):
@@ -297,8 +302,3 @@ class MappingDetails():
 
     def get_no_matched_model_list(self):
         return self._get_no_matched_model_list()
-
-    def get_mapping_intelligence_data(self, file_brand, file_model):
-        return self._get_mapping_intelligence_data(
-            file_brand, file_model
-        )
