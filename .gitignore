@@ -3,3 +3,4 @@ __pycache__
 results/development/*
 results/info/*
 fixtures/*
+mapping_test.py
